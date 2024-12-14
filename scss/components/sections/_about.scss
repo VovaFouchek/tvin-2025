@@ -1,0 +1,36 @@
+.home__about {
+    .container{
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+        max-width: 1368px;
+        align-items: center;
+        padding: 240px 80px;
+        padding-bottom: 160px;
+        @media (max-width: 1024px) {
+            padding: 180px 40px;
+            padding-bottom: 80px; 
+        }
+        @media (max-width: 767px) {
+            padding: 80px 24px;
+        }
+    }
+
+    &__text {
+        font-size: 40px;
+        font-weight: 600;
+        p {
+            text-align: center;
+            span {
+                color: #E20036;
+            }
+            @media (max-width: 767px) {
+                text-align: left;
+            }
+        }
+        @media (max-width: 767px) {
+            font-size: 24px;
+            margin-bottom: -80px;
+        }
+    }
+}

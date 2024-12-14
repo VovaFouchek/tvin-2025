@@ -1,0 +1,17 @@
+.home__banner {
+    background-image: url(/images/homeBanner.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+    min-height: 716px;
+    @media (max-width: 1440px) {
+        min-height: 680px;
+    }
+    @media (max-width: 1024px) {
+        min-height: 480px;
+    }
+    @media (max-width: 767px) {
+        min-height: 280px;
+    }
+}

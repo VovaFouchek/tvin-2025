@@ -1,0 +1,84 @@
+html{
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    font-family: $mainFont;
+    background-color: #f2f2f3;
+
+    @supports (scrollbar-gutter: auto) {
+        scrollbar-gutter: auto;  
+    }
+
+    &.act{
+        overflow: hidden;
+    }
+
+}
+
+.container{
+    width: 100%;
+    max-width: 1728px;
+    margin: 0 auto;
+    padding: 80px 180px;
+
+
+    @media (max-width: 1440px) {
+        padding: 80px 36px;
+    }
+    @media (max-width: 1024px) {
+        padding: 80px 40px;
+    }
+    @media (max-width: 767px) {
+        padding: 80px 24px;
+    }
+}
+.hr {
+    width: 100%;
+    max-width: 1728px;
+    padding: 4px 180px;
+    margin: 0 auto;
+    @media (max-width: 1440px) {
+        padding: 4px 36px;
+    }
+    @media (max-width: 1024px) {
+        padding: 4px 40px;
+    }
+    @media (max-width: 767px) {
+        padding: 4px 24px;
+    }
+    hr {
+        opacity: 0.1;
+        background: #000;
+    }
+}
+
+
+#wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    
+    .main{
+        flex: 1 0 auto;
+    }
+
+    .footer{
+        flex-shrink: 0;
+    }
+
+}
+
+a, button {
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+h1 {
+    max-width: 1368px;
+    font-size: 64px;
+    font-weight: 600;
+}
