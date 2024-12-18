@@ -93,6 +93,10 @@
     }
     .header__mob-menu {
         display: none;
+
+        &__list {
+            top: 64px;
+        }
         @media (max-width: 1024px) {
             display: block;
             .burger-btn {
