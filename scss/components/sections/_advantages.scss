@@ -1,4 +1,4 @@
-.home__advantages {
+.advantages {
     &__wrap {
         display: flex;
         flex-direction: column;
@@ -80,14 +80,14 @@
         }
     }
     &__box1 {
-        background-image: url(/images/background/Advantages1.svg);
+        background-image: url(../images/background/Advantages1.svg);
         width: calc(43% - 12px);
         @media (max-width: 1024px) {
             width: 100%;
         }
     }
     &__box2 {
-        background-image: url(/images/background/Advantages2.svg);
+        background-image: url(../images/background/Advantages2.svg);
         width: calc(57% - 12px);
         @media (max-width: 1024px) {
             width: calc(50% - 8px);
@@ -97,7 +97,7 @@
         }
     }
     &__box3 {
-        background-image: url(/images/background/Advantages3.svg);
+        background-image: url(../images/background/Advantages3.svg);
         width: calc(57% - 12px);
         @media (max-width: 1024px) {
             order: 1;
@@ -105,7 +105,7 @@
         }
     }
     &__box4 {
-        background-image: url(/images/background/Advantages4.svg);
+        background-image: url(../images/background/Advantages4.svg);
         width: calc(43% - 12px);
         @media (max-width: 1024px) {
             width: calc(50% - 12px);

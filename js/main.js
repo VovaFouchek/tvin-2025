@@ -75,25 +75,22 @@ function supportModal() {
       toggleVisibility(modal, shadow, 'remove', 'act');
     }
   });
+  
 }
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const tabs = document.querySelectorAll(".tab");
   const searchInput = document.getElementById("search-input");
   const dropdown = document.querySelector(".dropdown");
   const options = document.querySelectorAll(".option");
-  const cards = document.querySelectorAll(".card");
+  const cards = document.querySelectorAll(".tariffs__card");
 
-  // Prices for each town
   const prices = {
     vinnytsia: { turbo: 400, superg: 499, comfort: 300 },
     kalynivka: { turbo: 450, superg: 550, comfort: 350 },
     nemyriv: { turbo: 420, superg: 520, comfort: 320 },
   };
 
-  // Handle tab switching
   const switchTab = (town) => {
     tabs.forEach((tab) => {
       tab.classList.toggle("active", tab.dataset.town === town);
@@ -101,51 +98,58 @@ document.addEventListener("DOMContentLoaded", () => {
     updatePrices(town);
   };
 
-  // Update prices based on town
   const updatePrices = (town) => {
     cards.forEach((card) => {
       const tariff = card.dataset.tariff;
       const priceElement = card.querySelector(".price");
-      priceElement.textContent = `${prices[town][tariff]} грн / міс`;
+
+      priceElement.textContent = `${prices[town][tariff]}`;
     });
   };
 
-  // Filter dropdown options based on search input
   searchInput.addEventListener("input", () => {
     const filter = searchInput.value.toLowerCase();
+  
     options.forEach((option) => {
       const text = option.textContent.toLowerCase();
       option.style.display = text.includes(filter) ? "block" : "none";
     });
   });
 
-  // Handle dropdown option selection
   options.forEach((option) => {
     option.addEventListener("click", () => {
       const town = option.closest(".group").dataset.group;
       searchInput.value = option.textContent;
+
       switchTab(town);
-      dropdown.style.display = "none"; // Hide dropdown after selection
+      dropdown.style.display = "none"; 
     });
   });
 
-  // Show dropdown on focus
   searchInput.addEventListener("focus", () => {
     dropdown.style.display = "block";
   });
 
-  // Hide dropdown on blur
   searchInput.addEventListener("blur", () => {
     setTimeout(() => {
       dropdown.style.display = "none";
-    }, 200); // Add slight delay to allow option click
+    }, 200);
   });
 
-  // Handle tab click
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       const town = tab.dataset.town;
+      searchInput.value = "";
+
       switchTab(town);
+    });
+  });
+
+  cards.forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      cards.forEach((c) => c.classList.remove("wild"));
+
+      card.classList.add("wild");
     });
   });
 });

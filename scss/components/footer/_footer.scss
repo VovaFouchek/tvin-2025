@@ -1,74 +1,95 @@
 .footer {
     .container {
         padding-top: 180px;
+
         @media (max-width: 1440px) {
             padding-bottom: 80px;
         }
+
         @media (max-width: 1024px) {
             padding-top: 80px;
         }
     }
+
     &__wrap {
         width: 100%;
         display: flex;
         flex-direction: column;
         gap: 180px;
+
         @media (max-width: 767px) {
             gap: 90px;
         }
     }
+
     &__head {
         display: flex;
         flex-direction: row;
+
         p {
             max-width: 727px;
             font-size: 24px;
             font-weight: 600;
+
             @media (max-width: 767px) {
                 font-size: 20px;
             }
         }
     }
+
     &__middle {
         display: flex;
         flex-direction: row;
         width: 100%;
         justify-content: space-between;
+
         @media (max-width: 767px) {
             flex-direction: column;
             gap: 90px;
         }
+
         .box {
             display: flex;
             flex-direction: column;
             gap: 40px;
+
             a {
                 font-size: 36px;
                 font-weight: 600;
-                color: #E20036;
+
+                &:first-child{
+                    color: #E20036;
+                }
+      
                 @media (max-width: 767px) {
                     font-size: 24px;
                 }
             }
-            p {
-                font-size: 36px;
-                font-weight: 600;
-                @media (max-width: 767px) {
-                    font-size: 24px;
-                }
-            }
+
+            // p {
+            //     font-size: 36px;
+            //     font-weight: 600;
+
+            //     @media (max-width: 767px) {
+            //         font-size: 24px;
+            //     }
+            // }
         }
+
         .box2 {
             display: flex;
             flex-direction: column;
             gap: 24px;
+
             p {
                 font-size: 24px;
                 font-weight: 600;
+
                 @media (max-width: 767px) {
                     font-size: 16px;
                 }
             }
+
             .icons {
                 display: flex;
                 flex-direction: row;
@@ -76,15 +97,19 @@
             }
         }
     }
+
     &__bottom {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+
         @media (max-width: 767px) {
             flex-direction: column;
             gap: 40px;
         }
-        p {
+
+        a,
+        small {
             font-size: 16px;
             font-weight: 500;
             opacity: 50%;
