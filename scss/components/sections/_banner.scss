@@ -6,6 +6,10 @@
     background-attachment: scroll;
     min-height: 716px;
 
+    @supports (background-image: url('image.webp')) {
+        background-image: url('../images/homeBanner.webp');
+    }
+
     @media (max-width: 1440px) {
         min-height: 680px;
     }
