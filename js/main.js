@@ -1,13 +1,50 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-  supportModal();
+  initializeModal('.support-btn', 'support-modal');
+  initializeModal('.connect-btn', 'connect-modal');
+  initializeModal('.pay-btn', 'pay-modal');
   burgerMenu();
+  initializeAccordion('.accordion');
+  subTitleToggle();
 });
 
 function toggleVisibility(modal, shadow, action, shadowClass) {
   modal.classList[action]('act');
   shadow.classList[action](shadowClass);
   document.body.classList[action]('act');
+}
+
+function initializeModal(triggerSelector, modalId) {
+  const openModalBtns = document.querySelectorAll(triggerSelector);
+  const modal = document.getElementById(modalId);
+  const burgerBtn = document.getElementById('burger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const shadow = document.querySelector('.shadow');
+
+  if (!modal) {
+    console.error(`Modal with ID "${modalId}" not found.`);
+    return;
+  }
+
+  openModalBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (mobileNav.classList.contains('act')) {
+        toggleVisibility(mobileNav, shadow, 'remove', 'act2');
+        burgerBtn.classList.remove('act');
+      }
+      toggleVisibility(modal, shadow, 'add', 'act');
+    });
+  });
+
+  const closeModalBtn = modal.querySelector('.close-btn');
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', () => toggleVisibility(modal, shadow, 'remove', 'act'));
+  }
+
+  shadow.addEventListener('click', (event) => {
+    if (event.target === shadow && modal.classList.contains('act')) {
+      toggleVisibility(modal, shadow, 'remove', 'act');
+    }
+  });
 }
 
 function burgerMenu() {
@@ -50,32 +87,53 @@ function burgerMenu() {
   window.addEventListener('resize', handleResize);
 }
 
-function supportModal() {
-  const openModalBtns = document.querySelectorAll('.support-btn');
-  const modal = document.getElementById('support-modal');
-  const burgerBtn = document.getElementById('burger-btn');
-  const mobileNav = document.getElementById('mobile-nav');
-  const shadow = document.querySelector('.shadow');
+function initializeAccordion(accordionSelector) {
+  const accordionItems = document.querySelectorAll(`${accordionSelector} .accordion__item`);
 
-  openModalBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      if (mobileNav.classList.contains('act')) {
-        toggleVisibility(mobileNav, shadow, 'remove', 'act2');
-        burgerBtn.classList.remove('act');
+  accordionItems.forEach(item => {
+    const trigger = item.querySelector('.accordion__item-trigger');
+    const content = item.querySelector('.accordion__item-content');
+
+    if (!item.classList.contains('act')) {
+      content.style.maxHeight = 0;
+    }
+
+    trigger.addEventListener('click', () => {
+      const isActive = item.classList.contains('act');
+
+      accordionItems.forEach(innerItem => {
+        innerItem.classList.remove('act');
+        innerItem.querySelector('.accordion__item-content').style.maxHeight = 0;
+      });
+
+      if (!isActive) {
+        item.classList.add('act');
+        content.style.maxHeight = content.scrollHeight + 'px';
       }
-      toggleVisibility(modal, shadow, 'add', 'act');
     });
   });
+}
 
-  const closeModalBtn = document.querySelector('.close-btn');
-  closeModalBtn.addEventListener('click', () => toggleVisibility(modal, shadow, 'remove', 'act'));
+function subTitleToggle() {
+  const labels = document.querySelectorAll('.input-label');
 
-  shadow.addEventListener('click', (event) => {
-    if (event.target === shadow && modal.classList.contains('act')) {
-      toggleVisibility(modal, shadow, 'remove', 'act');
-    }
+  labels.forEach((label) => {
+    const input = label.querySelector('input');
+    const subTitle = label.querySelector('.sub-title');
+
+    const updateOpacity = () => {
+      if (input.value.trim() === '') {
+        subTitle.style.opacity = 0;
+      } else {
+        subTitle.style.opacity = 1;
+      }
+    };
+
+    updateOpacity();
+
+    input.addEventListener('input', updateOpacity);
+    input.addEventListener('blur', updateOpacity);
   });
-  
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -109,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   searchInput.addEventListener("input", () => {
     const filter = searchInput.value.toLowerCase();
-  
+
     options.forEach((option) => {
       const text = option.textContent.toLowerCase();
       option.style.display = text.includes(filter) ? "block" : "none";
@@ -122,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
       searchInput.value = option.textContent;
 
       switchTab(town);
-      dropdown.style.display = "none"; 
+      dropdown.style.display = "none";
     });
   });
 
@@ -153,3 +211,93 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+const form = document.querySelector('form');
+const inner = document.querySelector('.form__wrap');
+const loader = document.querySelector('.lds-roller');
+const inputs = document.querySelectorAll('input');
+
+// need to change
+ const url = '/post'; 
+
+const statusLoading = () => {
+  loader.classList.add('active');
+  form.classList.add('disabled');
+};
+
+const statusFailure = () => {
+  const messageFailure = 'Ой, халепа. Будь ласка, спробуйте ще раз';
+  loader.classList.remove('active');
+  form.classList.remove('disabled');
+  const statusMessage = document.createElement('div');
+  statusMessage.classList.add('status');
+  form.appendChild(statusMessage);
+  statusMessage.textContent = messageFailure;
+};
+
+const statusSuccess = () => {
+  loader.classList.remove('active');
+  const statusSuccessMessage = document.createElement('div');
+  statusSuccessMessage.classList.add('successPopUp');
+  document.querySelector('.successPopUp').classList.add('success');
+  inner.appendChild(statusSuccessMessage);
+  document.querySelector('.form__wrap').classList.add('disabled');
+};
+
+const message = {
+  loading: statusLoading,
+  success: statusSuccess,
+  failure: statusFailure,
+};
+
+const clearValues = () => {
+  form.reset();
+};
+
+const handleSubmit = event => {
+  event.preventDefault();
+  message.loading();
+  const userName = document.querySelector('#name').value;
+  const userAddress = document.querySelector('#address').value;
+  const userContactMethod = document.querySelector('.com-methods input[name="method"]:checked').value;
+  const userContact = document.querySelector('#contact').value;
+
+  const personalData = {
+    name: userName,
+    address: userAddress,
+    contact: userContact,
+    contact_method: userContactMethod,
+  };
+
+  addInfoToDatabase(personalData);
+};
+
+const addInfoToDatabase = async personalData => {
+  const fetchData = {
+    method: 'POST',
+    body: JSON.stringify(personalData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  try {
+    const response = await fetch(url, fetchData); 
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status: ${response.status}`);
+    }
+
+    message.success();
+
+    return response;
+  } catch (error) {
+    message.failure();
+    setTimeout(() => document.querySelector('.status').remove(), 3000);
+
+    return null;
+  } finally {
+    clearValues();
+  }
+};
+
+form.addEventListener('submit', handleSubmit);

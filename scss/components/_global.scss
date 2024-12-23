@@ -1,24 +1,24 @@
-html{
+html {
     scroll-behavior: smooth;
     height: 100%;
 }
 
-body{
+body {
     height: 100%;
     font-family: $mainFont;
     background-color: #f2f2f3;
 
     @supports (scrollbar-gutter: auto) {
-        scrollbar-gutter: auto;  
+        scrollbar-gutter: auto;
     }
 
-    &.act{
+    &.act {
         overflow: hidden;
     }
 
 }
 
-.container{
+.container {
     width: 100%;
     max-width: 1728px;
     margin: 0 auto;
@@ -28,27 +28,34 @@ body{
     @media (max-width: 1440px) {
         padding: 80px 36px;
     }
+
     @media (max-width: 1024px) {
         padding: 80px 40px;
     }
+
     @media (max-width: 767px) {
         padding: 80px 24px;
     }
 }
+
 .hr {
     width: 100%;
     max-width: 1728px;
     padding: 4px 180px;
     margin: 0 auto;
+
     @media (max-width: 1440px) {
         padding: 4px 36px;
     }
+
     @media (max-width: 1024px) {
         padding: 4px 40px;
     }
+
     @media (max-width: 767px) {
         padding: 4px 24px;
     }
+
     hr {
         opacity: 0.1;
         background: #000;
@@ -56,23 +63,24 @@ body{
 }
 
 
-#wrapper{
+#wrapper {
     display: flex;
     flex-direction: column;
     height: 100vh;
     position: relative;
-    
-    .main{
+
+    .main {
         flex: 1 0 auto;
     }
 
-    .footer{
+    .footer {
         flex-shrink: 0;
     }
 
 }
 
-a, button {
+a,
+button {
     transition: all 0.3s;
     cursor: pointer;
 }

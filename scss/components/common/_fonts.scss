@@ -1,81 +1,89 @@
-
 @font-face {
     font-family: $mainFont;
-    src: 
-    local('Montserrat'), 
+    src:
+        local('Montserrat'),
         url("../font/Montserrat-Black.ttf") format("TrueType");
     font-weight: 900;
     font-style: normal;
     font-display: swap;
-    
+
 }
+
 @font-face {
     font-family: $mainFont;
-    src: 
+    src:
         url("../font/Montserrat-ExtraBold.ttf") format("TrueType");
     font-weight: 800;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: $mainFont;
-    src: 
+    src:
         url("../font/Montserrat-Bold.ttf") format("TrueType");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: $mainFont;
-    src: 
+    src:
         url("../font/Montserrat-SemiBold.ttf") format("TrueType");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: $mainFont;
-    src: 
+    src:
         url("../font/Montserrat-Medium.ttf") format("TrueType");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: $mainFont;
-    src: 
+    src:
         url("../font/Montserrat-Regular.ttf") format("TrueType");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: $mainFont;
-    src: 
+    src:
         url("../font/Montserrat-Light.ttf") format("TrueType");
     font-weight: 300;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: $mainFont;
-    src: 
+    src:
         url("../font/Montserrat-Thin.ttf") format("TrueType");
     font-weight: 200;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: $mainFont;
-    src: 
+    src:
         url("../font/fixel/FixelText-Black.ttf") format("TrueType");
     font-weight: 100;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'DaysOne-Regular';
-    src: 
+    src:
         url("../font/DaysOne-Regular.ttf") format("TrueType");
     font-weight: 400;
     font-style: normal;
