@@ -238,7 +238,7 @@ const statusFailure = () => {
 const statusSuccess = () => {
   loader.classList.remove('active');
   const statusSuccessMessage = document.createElement('div');
-  statusSuccessMessage.classList.add('successPopUp');
+  statusSuccessMessage.classList.add('successPopUp'); // ! TODO: fix issue with class name 
   document.querySelector('.successPopUp').classList.add('success');
   inner.appendChild(statusSuccessMessage);
   document.querySelector('.form__wrap').classList.add('disabled');
@@ -292,7 +292,7 @@ const addInfoToDatabase = async personalData => {
     return response;
   } catch (error) {
     message.failure();
-    setTimeout(() => document.querySelector('.status').remove(), 3000);
+    setTimeout(() => document.querySelector('.status').remove(), 5000);
 
     return null;
   } finally {
