@@ -113,14 +113,15 @@
 }
 
 .successPopUp {
+
     position: absolute;
     left: 20px;
     top: 45px;
     padding: 20px;
-    background-color: lightcyan;
+    background-color: #d5e9f1;
     border-radius: 20px;
     width: calc(100% - 40px);
-    display: flex;
+    display: none;
     flex-direction: row;
     gap: 10px;
     transition: all 0.3s;
@@ -128,6 +129,7 @@
 
     &.success{
         opacity: 1;
+        display: flex;
     }
 
     img {
