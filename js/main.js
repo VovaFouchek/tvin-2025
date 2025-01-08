@@ -144,9 +144,119 @@ document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".tariffs__card");
 
   const prices = {
-    vinnytsia: { turbo: 400, superg: 499, comfort: 300 },
-    kalynivka: { turbo: 450, superg: 550, comfort: 350 },
-    nemyriv: { turbo: 420, superg: 520, comfort: 320 },
+    turbo: 400,
+    superg: 499,
+    comfort: {
+      vinnytsia: 200,
+      kalynivka: 200,
+      agronomic: 200,
+      bohoniki: 200,
+      lavrovka: 200,
+      pavlivka: 200,
+      salnyk: 200,
+      lisova: 200,
+      kordelivka: 200,
+      druzhelubivka: 200,
+      nemyriv: 180,
+      monastyrok: 180,
+      special: 250,
+      low: 150,
+    },
+  };
+
+  const specialRegions = [
+    "kotyuzhyntsi",
+    "polovaLysiivka",
+    "myrne",
+    "novaHreblya",
+    "pykiv",
+    "zhyhalivka",
+    "druzhne",
+    "hulivtsi",
+    "rivnynne",
+    "prylutske",
+    "shepiivka",
+    "cherepashyntsi",
+    "zalyvanshchyna",
+    "hlynsk",
+    "berezhany",
+    "khomutyntsi",
+    "hrushkivtsi",
+    "baikivka",
+    "pysarivka",
+    "mukhivtsi",
+    "medvezha",
+    "hunka",
+    "kovalivka",
+    "chukiv",
+    "selevyntsi",
+    "buhakiv",
+    "velykaBushynka",
+    "karolina",
+    "zarudyntsi",
+    "podilske",
+    "bratslav",
+    "vovchok",
+  ];
+
+  const lowRegions = [
+    "stryzhavka",
+    "dorozhne",
+    "ivaniv",
+    "gushchyntsi",
+    "uladivka",
+    "zhuravne",
+  ];
+
+  const townToGroup = {
+    agronomic: "vinnytsia",
+    bohoniki: "vinnytsia",
+    lavrovka: "vinnytsia",
+    stryzhavka: "vinnytsia",
+    dorozhne: "vinnytsia",
+
+    pavlivka: "kalynivka",
+    salnyk: "kalynivka",
+    lisova: "kalynivka",
+    kordelivka: "kalynivka",
+    druzhelubivka: "kalynivka",
+    kotyuzhyntsi: "kalynivka",
+    polovaLysiivka: "kalynivka",
+    myrne: "kalynivka",
+    novaHreblya: "kalynivka",
+    pykiv: "kalynivka",
+    zhyhalivka: "kalynivka",
+    druzhne: "kalynivka",
+    hulivtsi: "kalynivka",
+    prylutske: "kalynivka",
+    shepiivka: "kalynivka",
+    cherepashyntsi: "kalynivka",
+    zalyvanshchyna: "kalynivka",
+    hlynsk: "kalynivka",
+    berezhany: "kalynivka",
+    khomutyntsi: "kalynivka",
+    hrushkivtsi: "kalynivka",
+    baikivka: "kalynivka",
+    pysarivka: "kalynivka",
+    ivaniv: "kalynivka",
+    gushchyntsi: "kalynivka",
+    uladivka: "kalynivka",
+    zhuravne: "kalynivka",
+
+    monastyrok: "nemyriv",
+    mukhivtsi: "nemyriv",
+    medvezha: "nemyriv",
+    hunka: "nemyriv",
+    kovalivka: "nemyriv",
+    chukiv: "nemyriv",
+    selevyntsi: "nemyriv",
+    buhakiv: "nemyriv",
+    velykaBushynka: "nemyriv",
+    karolina: "nemyriv",
+    zarudyntsi: "nemyriv",
+    podilske: "nemyriv",
+    bratslav: "nemyriv",
+    vovchok: "nemyriv",
   };
 
   const switchTab = (town) => {
@@ -161,13 +271,34 @@ document.addEventListener("DOMContentLoaded", () => {
       const tariff = card.dataset.tariff;
       const priceElement = card.querySelector(".price");
 
-      priceElement.textContent = `${prices[town][tariff]}`;
+      if (tariff === "comfort") {
+        if (lowRegions.includes(town)) {
+          priceElement.textContent = `${prices.comfort.low}`;
+        } else if (specialRegions.includes(town)) {
+          priceElement.textContent = `${prices.comfort.special}`;
+        } else if (prices.comfort[town]) {
+          priceElement.textContent = `${prices.comfort[town]}`;
+        } else {
+          priceElement.textContent = `${prices.comfort.special}`;
+        }
+      } else {
+        priceElement.textContent = `${prices[tariff]}`;
+      }
     });
+  };
+
+  const handleOptionClick = (option) => {
+    const town = option.dataset.value;
+    const group = townToGroup[town] || "vinnytsia";
+    searchInput.value = option.textContent;
+
+    switchTab(group);
+    updatePrices(town);
+    dropdown.style.display = "none";
   };
 
   searchInput.addEventListener("input", () => {
     const filter = searchInput.value.toLowerCase();
-
     options.forEach((option) => {
       const text = option.textContent.toLowerCase();
       option.style.display = text.includes(filter) ? "block" : "none";
@@ -175,13 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   options.forEach((option) => {
-    option.addEventListener("click", () => {
-      const town = option.closest(".group").dataset.group;
-      searchInput.value = option.textContent;
-
-      switchTab(town);
-      dropdown.style.display = "none";
-    });
+    option.addEventListener("click", () => handleOptionClick(option));
   });
 
   searchInput.addEventListener("focus", () => {
@@ -206,11 +331,15 @@ document.addEventListener("DOMContentLoaded", () => {
   cards.forEach((card) => {
     card.addEventListener("mouseenter", () => {
       cards.forEach((c) => c.classList.remove("wild"));
-
       card.classList.add("wild");
     });
   });
+
+  // Initialize default prices on load
+  switchTab("vinnytsia");
 });
+
+
 
 const form = document.querySelector('form');
 const inner = document.querySelector('.form__wrap');
