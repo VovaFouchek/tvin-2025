@@ -335,7 +335,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Initialize default prices on load
   switchTab("vinnytsia");
 });
 
@@ -344,7 +343,7 @@ const inner = document.querySelector('.form__wrap');
 const loader = document.querySelector('.lds-roller');
 const inputs = document.querySelectorAll('input');
 
-const url = '/post'; 
+const API_URL = '/post'; 
 
 const statusLoading = () => {
   loader.classList.add('active');
@@ -353,11 +352,15 @@ const statusLoading = () => {
 
 const statusFailure = () => {
   const messageFailure = 'Ой, халепа. Будь ласка, спробуйте ще раз';
+
   loader.classList.remove('active');
   form.classList.remove('disabled');
+
   const statusMessage = document.createElement('div');
   statusMessage.classList.add('status');
+
   form.appendChild(statusMessage);
+
   statusMessage.textContent = messageFailure;
 };
 
@@ -390,6 +393,7 @@ const clearValues = () => {
 const handleSubmit = event => {
   event.preventDefault();
   message.loading();
+
   const userName = document.querySelector('#name').value;
   const userAddress = document.querySelector('#address').value;
   const userContactMethod = document.querySelector('.com-methods input[name="method"]:checked').value;
@@ -414,7 +418,7 @@ const addInfoToDatabase = async personalData => {
     },
   };
   try {
-    const response = await fetch(url, fetchData); 
+    const response = await fetch(API_URL, fetchData);
 
     if (!response.ok) {
       throw new Error(`Request failed with status: ${response.status}`);
