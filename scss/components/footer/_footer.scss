@@ -95,8 +95,9 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        gap: 15px;
 
-        @media (max-width: 767px) {
+        @media (max-width: 870px) {
             flex-direction: column;
             gap: 40px;
         }
@@ -116,14 +117,15 @@
             &:last-of-type {
                 align-items: flex-end;
                 
-                @media (max-width: 767px) {
+                @media (max-width: 870px) {
                     align-items: center;
                 }
             }
 
 
-            @media (max-width: 767px) {
+            @media (max-width: 870px) {
                 align-items: center;
+                text-align: center;
             }
         }
     }
