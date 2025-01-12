@@ -1,13 +1,16 @@
 .missionBanner {
     .container {
         padding-bottom: 240px;
+
         @media (max-width: 1024px) {
-            padding-bottom: 180px; 
+            padding-bottom: 180px;
         }
+
         @media (max-width: 767px) {
-            padding-bottom: 80px; 
+            padding-bottom: 80px;
         }
     }
+
     &__wrap {
         width: 100%;
         min-height: 640px;
@@ -19,103 +22,130 @@
         background-repeat: no-repeat;
         background-position: bottom right;
         background-size: 34%;
-        p, span, button, h2 {
+
+        p,
+        span,
+        button,
+        h2 {
             color: #FFFFFF;
         }
+
         @media (max-width: 1024px) {
             min-height: 524px;
             background-size: 32%;
         }
+
         @media (max-width: 767px) {
             background-image: none;
             min-height: 460px;
         }
     }
+
     &__leftSide {
         display: flex;
         flex-direction: column;
         gap: 130px;
         padding: 40px;
         justify-content: space-between;
+
         &__head {
             display: flex;
             flex-direction: column;
             gap: 24px;
+
             h2 {
                 font-size: 20px;
                 font-weight: 500;
             }
+
             span {
                 font-size: 40px;
                 font-weight: 600;
                 width: 57%;
+
                 @media (max-width: 1440px) {
                     width: 70%;
                 }
+
                 @media (max-width: 1024px) {
                     width: 80%;
                     font-size: 32px;
                 }
+
                 @media (max-width: 767px) {
                     width: 100%;
                     font-size: 24px;
                 }
             }
         }
+
         &__footer {
             display: flex;
             flex-direction: column;
             gap: 24px;
             align-items: flex-start;
+
             p {
                 font-size: 16px;
                 font-weight: 400;
             }
+
             .white-btn {
                 border: 1px solid #FFFFFF;
                 background-color: transparent;
                 font-size: 14px;
                 font-weight: 500;
                 padding: 8px 16px;
+
                 &:hover {
                     border: 1px solid #fff;
                     color: #000000;
                     background: #fff;
                 }
+
                 &:disabled {
                     opacity: 50%;
                 }
+
                 &:active {
                     color: #000000;
                     background: #fff;
                 }
+
                 @media (max-width: 767px) {
                     width: 100%;
                     justify-content: center;
                 }
             }
+
             @media (max-width: 1440px) {
                 width: 70%;
             }
+
             @media (max-width: 1024px) {
                 width: 65%;
                 font-size: 32px;
             }
+
             @media (max-width: 767px) {
                 width: 100%;
                 font-size: 24px;
             }
         }
     }
+
     @media (max-width: 1440px) {
         min-height: 640px;
     }
+
     @media (max-width: 1024px) {
         min-height: 524px;
     }
+
     @media (max-width: 767px) {
         min-height: 464px;
     }
+
     &__rightSide {
         @media (max-width: 767px) {
             display: none;
