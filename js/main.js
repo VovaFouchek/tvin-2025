@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  initializeModal('.support-btn', 'support-modal');
-  initializeModal('.connect-btn', 'connect-modal');
-  initializeModal('.pay-btn', 'pay-modal');
+  initializeModal('.support-btn', 'support');
+  initializeModal('.connect-btn', 'connect');
+  initializeModal('.pay-btn', 'pay');
   burgerMenu();
   initializeAccordion('.accordion');
   subTitleToggle();
@@ -25,23 +25,46 @@ function initializeModal(triggerSelector, modalId) {
     return;
   }
 
+  const openModal = () => {
+    if (mobileNav.classList.contains('act')) {
+      toggleVisibility(mobileNav, shadow, 'remove', 'act2');
+      burgerBtn.classList.remove('act');
+    }
+
+    toggleVisibility(modal, shadow, 'add', 'act');
+  };
+
   openModalBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      if (mobileNav.classList.contains('act')) {
-        toggleVisibility(mobileNav, shadow, 'remove', 'act2');
-        burgerBtn.classList.remove('act');
-      }
-      toggleVisibility(modal, shadow, 'add', 'act');
+    btn.addEventListener('click', (event) => {
+      event.preventDefault(); 
+      openModal();
+      window.location.hash = modalId; 
     });
   });
 
   const closeModalBtn = modal.querySelector('.close-btn');
   if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', () => toggleVisibility(modal, shadow, 'remove', 'act'));
+    closeModalBtn.addEventListener('click', () => {
+      toggleVisibility(modal, shadow, 'remove', 'act');
+      history.replaceState(null, document.title, window.location.pathname + window.location.search); // Clear URL hash
+    });
   }
 
   shadow.addEventListener('click', (event) => {
     if (event.target === shadow && modal.classList.contains('act')) {
+      toggleVisibility(modal, shadow, 'remove', 'act');
+      history.replaceState(null, document.title, window.location.pathname + window.location.search); // Clear URL hash
+    }
+  });
+
+  if (window.location.hash === `#${modalId}`) {
+    openModal();
+  }
+
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash === `#${modalId}`) {
+      openModal();
+    } else if (modal.classList.contains('act') && !window.location.hash) {
       toggleVisibility(modal, shadow, 'remove', 'act');
     }
   });
@@ -51,7 +74,7 @@ function burgerMenu() {
   const burgerBtn = document.getElementById('burger-btn');
   const mobileNav = document.getElementById('mobile-nav');
   const shadow = document.querySelector('.shadow');
-  const supportModal = document.getElementById('support-modal');
+  const supportModal = document.getElementById('support');
   const navLinks = document.querySelectorAll('.header__mob-menu__list .nav-link');
 
   const handleResize = () => {
