@@ -172,18 +172,21 @@ document.addEventListener("DOMContentLoaded", () => {
     comfort: {
       vinnytsia: 200,
       kalynivka: 200,
-      agronomic: 200,
-      bohoniki: 200,
+      agronomic: 250,
+      bohoniki: 250,
       lavrovka: 200,
-      pavlivka: 200,
-      salnyk: 200,
-      lisova: 200,
-      kordelivka: 200,
-      druzhelubivka: 200,
+      pavlivka: 250,
+      salnyk: 250,
+      lisova: 250,
+      kordelivka: 250,
+      druzhelubivka: 250,
+      kamyanohirka: 250,
       nemyriv: 180,
-      monastyrok: 180,
+      monastyrok: 200,
+      monastyrske: 250,
+      holovenky: 250,
       special: 250,
-      low: 150,
+      low: 175,
     },
   };
 
@@ -265,6 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
     gushchyntsi: "kalynivka",
     uladivka: "kalynivka",
     zhuravne: "kalynivka",
+    kamyanohirka: "kalynivka",
 
     monastyrok: "nemyriv",
     mukhivtsi: "nemyriv",
@@ -280,6 +284,8 @@ document.addEventListener("DOMContentLoaded", () => {
     podilske: "nemyriv",
     bratslav: "nemyriv",
     vovchok: "nemyriv",
+    holovenky: "nemyriv",
+    monastyrske: "nemyriv",
   };
 
   const switchTab = (town) => {
