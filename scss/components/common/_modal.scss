@@ -349,6 +349,14 @@
                     flex-direction: row;
                     gap: 8px;
                 }
+
+                .liqpay-btn {
+                    color: #fff;
+
+                    &:hover {
+                        background: #6abf50;
+                    }
+                }
             }
 
             .trigger__text {

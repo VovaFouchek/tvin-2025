@@ -599,6 +599,12 @@ h1 {
           flex-direction: row;
   gap: 8px;
 }
+.modal .accordion .accordion__item .accordion__item-content .liqpay-btn {
+  color: #fff;
+}
+.modal .accordion .accordion__item .accordion__item-content .liqpay-btn:hover {
+  background: #6abf50;
+}
 .modal .accordion .accordion__item .trigger__text {
   display: -webkit-box;
   display: -ms-flexbox;
