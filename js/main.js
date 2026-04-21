@@ -254,6 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     zhyhalivka: "kalynivka",
     druzhne: "kalynivka",
     hulivtsi: "kalynivka",
+    rivnynne: "kalynivka",
     prylutske: "kalynivka",
     shepiivka: "kalynivka",
     cherepashyntsi: "kalynivka",
@@ -454,6 +455,7 @@ const addInfoToDatabase = async personalData => {
     }
 
     message.success();
+    clearValues();
 
     return response;
   } catch (error) {
@@ -461,8 +463,6 @@ const addInfoToDatabase = async personalData => {
     setTimeout(() => document.querySelector('.status').remove(), 4000);
 
     return null;
-  } finally {
-    clearValues();
   }
 };
 

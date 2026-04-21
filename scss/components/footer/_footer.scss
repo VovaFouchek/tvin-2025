@@ -53,8 +53,8 @@
             flex-direction: column;
             gap: 20px;
 
-            #email {
-                color: #E20036;
+            .email-link {
+                color: #C3002F;
             }
 
             a {
@@ -106,7 +106,7 @@
         small {
             font-size: 16px;
             font-weight: 500;
-            opacity: 50%;
+            color: #6d6d6d;
         }
 
         &__links {
