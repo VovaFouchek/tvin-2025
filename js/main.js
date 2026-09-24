@@ -170,11 +170,13 @@ document.addEventListener("DOMContentLoaded", () => {
     turbo: 400,
     superg: 499,
     comfort: {
-      vinnytsia: 200,
+      vinnytsia: 250,
       kalynivka: 200,
       agronomic: 250,
       bohoniki: 250,
       lavrovka: 200,
+      stryzhavka: 200,
+      dorozhne: 200,
       pavlivka: 250,
       salnyk: 250,
       lisova: 250,
@@ -226,8 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const lowRegions = [
-    "stryzhavka",
-    "dorozhne",
     "ivaniv",
     "gushchyntsi",
     "uladivka",
